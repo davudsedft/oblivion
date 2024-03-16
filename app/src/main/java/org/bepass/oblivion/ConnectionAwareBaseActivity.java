@@ -31,7 +31,14 @@ public abstract class ConnectionAwareBaseActivity extends AppCompatActivity {
         @Override
         public void onServiceDisconnected(ComponentName arg0) {
             serviceMessenger = null;
-            isBound = false;
+            isBound = false;  
+            //تعریف استاتیک اکتیویتی رفرش در مین اکتیویتی و مقدار دهی با this
+            // static Activity refresh;
+            //..
+            //in init method in MainActivity class refresh = this;
+         MainActivity.refresh.recreate(); //رفرش مین اکتیویتی بعد از دیسکاننکت.دستور سوم
+
+            
         }
     };
 
