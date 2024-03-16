@@ -32,6 +32,9 @@ public class QuickStartService extends TileService {
         public void onServiceDisconnected(ComponentName arg0) {
             serviceMessenger = null;
             isBound = false;
+            onStartListening(); //fix tile.setState(Tile.STATE_ACTIVE) After click towice
+
+
         }
     };
 
