@@ -30,6 +30,7 @@ public class MainActivity extends ConnectionAwareBaseActivity {
     private ActivityResultLauncher<Intent> vpnPermissionLauncher;
     private long backPressedTime;
     private Toast backToast;
+    static Activity refresh; //رفع مشکل نرفتن از حالت متصل نیستید به حالت در حال اتصال.دستور اول از سه دستور
 
     private SwitchButton.OnCheckedChangeListener createSwitchCheckedChangeListener() {
         return (view, isChecked) -> {
@@ -169,6 +170,22 @@ public class MainActivity extends ConnectionAwareBaseActivity {
     }
 
     private void init() {
+          refresh = this; //دستور دوم.دستور سوم اجرای رفرش در کلاس ConnectionAwareBaseActivity
+
+    
+   
+    /*    @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            serviceMessenger = null;
+            isBound = false;
+            MainActivity.refresh.recreate();  //رفرش اکتیویتی بعد از دیسکانکت
+        }
+    };
+*/
+
+
+        
+
         initPermissionLauncher();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             pushNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
